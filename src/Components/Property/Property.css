@@ -1,0 +1,53 @@
+.property-wrapper {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    overflow: auto;
+    width: 99.5%;
+    --height: 2rem;
+}
+
+.menu-option {
+    cursor: pointer;
+    height: 2rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.property-label {
+
+    display: inline-block;
+    font-weight:bold;
+    padding-left: 0.5rem;
+    text-align: left;
+    width: 29%;
+}
+
+.property-value {
+    border-left: 1px solid black;
+    float: right;
+    padding-right: 0.5rem;
+    text-align: right;
+    width: 65%;
+}
+
+input {
+    height: 2rem;
+    border: none;
+    width: 64.9%;
+}
+
+.select-property-label {
+    width: 70%
+}
+
+.select-property-box {
+    width: 0.5rem;
+    height:0.5rem;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.selected {
+    background-color: blue    
+}

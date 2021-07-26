@@ -1,0 +1,8 @@
+.title-wrapper {
+    display: inline-block;
+}
+
+.title-wrapper > span {
+    font-weight: bold;
+    vertical-align: middle;
+}
