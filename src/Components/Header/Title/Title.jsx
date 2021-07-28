@@ -12,7 +12,7 @@ export class Title extends React.PureComponent {
 
         return (
             <div className="title-wrapper">
-                <span> { value } </span>
+                <span>{ value }</span>
             </div>
         )
     }
