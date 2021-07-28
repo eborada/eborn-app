@@ -4,7 +4,6 @@
     border-right: 1px solid black;
     overflow: auto;
     width: 99.5%;
-    --height: 2rem;
 }
 
 .menu-option {
@@ -15,7 +14,6 @@
 }
 
 .property-label {
-
     display: inline-block;
     font-weight:bold;
     padding-left: 0.5rem;
@@ -31,23 +29,35 @@
     width: 65%;
 }
 
-input {
-    height: 2rem;
-    border: none;
-    width: 64.9%;
+input[type="text"] {
+    border:none;
+    width: 100%;
+    text-align: right;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+input[type="checkbox"] {
+    height: 1.5rem;
+}
+
+.select-multi-wrapper {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    display: flex;
 }
 
 .select-property-label {
-    width: 70%
+    width: 90%;
 }
 
-.select-property-box {
-    width: 0.5rem;
-    height:0.5rem;
-    border: 1px solid black;
-    display: inline-block;
-}
-
-.selected {
-    background-color: blue    
+.input-wrapper {
+    border-left: 1px solid black;
+    float: right;
+    padding-right: 0.5rem;
+    text-align: right;
+    width: 65%;
 }

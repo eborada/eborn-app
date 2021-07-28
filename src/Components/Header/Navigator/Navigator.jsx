@@ -1,7 +1,6 @@
 import React from 'react';
 import './Navigator.css';
 
-
 export class Navigator extends React.PureComponent {
 
     static defaultProps = {

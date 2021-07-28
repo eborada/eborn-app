@@ -1,5 +1,5 @@
 import React from 'react';
-import './Property.css';
+import '../Property.css';
 
 export class PropertyView extends React.PureComponent {
 

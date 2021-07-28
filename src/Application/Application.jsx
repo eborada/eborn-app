@@ -1,6 +1,8 @@
 import React from 'react';
 import Form from '../Form/Form.jsx';
 
+import { DISPLAY_KEY, VALUE_KEY } from '../constants.js';
+
 import './Application.css';
 
 const axios = require('axios').default;
@@ -15,7 +17,7 @@ export class Application extends React.PureComponent {
 
     componentDidMount() {
         let ref = this;
-        return axios.get('http://openlibrary.org/search.json?title=the+lord+of+the+rings')
+        return axios.get('http://openlibrary.org/search.json?title=nineteen-eighty-four')
             .then(function (response) {
                 ref.setState({loading: false, data: ref.filterData(response.data.docs[0])})
             })
@@ -25,10 +27,10 @@ export class Application extends React.PureComponent {
             });
     }
 
-    mapTopics(topics) {
+    mapArray(array) {
         let output = [];
-        for (let i = 0; i < topics.length; i++) {
-            output.push({display: topics[i], value: i})
+        for (let i = 0; i < array.length; i++) {
+            output.push({[DISPLAY_KEY]: array[i], [VALUE_KEY]: i})
         }
         return output;
     }
@@ -37,9 +39,11 @@ export class Application extends React.PureComponent {
         return {
             author: data.author_name[0],
             title: data.title,
-            availableTopics: this.mapTopics(data.subject),
+            availableTopics: this.mapArray(data.subject),
             selectedTopics: [],
-            description: data.text[2]
+            description: data.text[2],
+            availablePlaces: this.mapArray(data.place),
+            selectedPlace: {}
         }
     }
 

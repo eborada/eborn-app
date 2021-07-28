@@ -1,54 +1,47 @@
 import React from 'react';
+import { VALUE_KEY } from '../../../constants';
 import '../Property.css';
 
 export class PropertyEdit extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selections: []
-        }
-    }
-
     static defaultProps = {
         selected: false,
         mode: "data",
         label: "",
         value: "",
-        selections: [],
+        selectedData: [],
         onUpdate: () => { }
     }
 
-    handleChange = (event) => {
-        this.props.onSelect(event.target.value)
-    }
-
-
     render() {
-        const { mode, label, name, value, selected } = this.props;
-        const selectedClass = selected ? "selected" : "unselected";
+        const { mode, label, name, value } = this.props;
+        let output = this.props.selectedData.map(obj => obj[VALUE_KEY])
+
         switch (mode) {
             default:
             case 'data':
                 return (
                     <div className="property-wrapper">
                         <label className="property-label"> { label } </label> 
-                        <input name={name} className="property-value" onChange={(e) => this.props.onUpdate(e)} value={value}/>
+                        <div className="property-value">
+                            <input name={name} onChange={(e) => this.props.onUpdate(e)} value={value} type="text"/>
+                        </div>
                     </div>
                 )
             case 'select-option':
                 return (
-                    <div className="select-property-wrapper" key={value} >
+                    <div className="select-multi-wrapper" key={value} >
                         <label className="select-property-label" > {label} </label> 
+                        <div className="input-wrapper">
                         <input
-                            key={value}
-                            checked={this.props.selections[value]}
+                            checked={output.includes(value)}
                             type="checkbox" 
                             id={label}
                             name={label}
                             value={value}
-                            onChange={(e) =>this.handleChange(e)}
+                            onChange={(e) => this.props.onSelect(Number(e.target.value))}
 
                         />
+                        </div>
                     </div>
                 )
         }

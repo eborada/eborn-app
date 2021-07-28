@@ -5,7 +5,7 @@ export class Header extends React.PureComponent {
     render() {
         return (
             <div className="header-wrapper">
-                {this.props.children}
+                { this.props.children }
             </div>
         )
     }
