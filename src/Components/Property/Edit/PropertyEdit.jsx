@@ -14,14 +14,14 @@ export class PropertyEdit extends React.PureComponent {
 
     render() {
         const { mode, label, name, value } = this.props;
-        let output = this.props.selectedData.map(obj => obj[VALUE_KEY])
+        let output = this.props.selectedData.map(obj => obj[VALUE_KEY]);
 
         switch (mode) {
             default:
             case 'data':
                 return (
                     <div className="property-wrapper">
-                        <label className="property-label"> { label } </label> 
+                        <label className="property-label">{ label }</label> 
                         <div className="property-value">
                             <input name={name} onChange={(e) => this.props.onUpdate(e)} value={value} type="text"/>
                         </div>
@@ -30,7 +30,7 @@ export class PropertyEdit extends React.PureComponent {
             case 'select-option':
                 return (
                     <div className="select-multi-wrapper" key={value} >
-                        <label className="select-property-label" > {label} </label> 
+                        <label className="select-property-label" >{label}</label> 
                         <div className="input-wrapper">
                         <input
                             checked={output.includes(value)}

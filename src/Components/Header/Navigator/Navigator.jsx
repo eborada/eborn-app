@@ -13,7 +13,7 @@ export class Navigator extends React.PureComponent {
 
         return (
             <div className={`nav-wrapper ${mode}`} onClick={ () => this.props.onClick() }>
-                <span> { mode } </span>
+                <span>{ mode }</span>
             </div>
         )
     }

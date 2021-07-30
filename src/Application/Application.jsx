@@ -1,17 +1,17 @@
 import React from 'react';
-import Form from '../Form/Form.jsx';
 
+import Form from '../Form/Form.jsx';
 import { DISPLAY_KEY, VALUE_KEY } from '../constants.js';
 
 import './Application.css';
 
-const axios = require('axios').default;
 
+const axios = require('axios').default;
 export class Application extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true
+            view: "loading"
         }
     }
 
@@ -19,11 +19,21 @@ export class Application extends React.PureComponent {
         let ref = this;
         return axios.get('http://openlibrary.org/search.json?title=nineteen-eighty-four')
             .then(function (response) {
-                ref.setState({loading: false, data: ref.filterData(response.data.docs[0])})
+                ref.setState({view: "form", data: ref.filterData(response.data.docs[0])})
             })
             .catch(function (error) {
-                ref.setState({ loading: false, error })
+                ref.setState({ view: "form", error })
+            });
+    }
 
+    handleSubmission(payload) {
+        let ref = this;
+        return axios.post('http://mock/post/api')
+            .then(function (response) {
+                ref.setState({ view: "submission", data: payload })
+            })
+            .catch(function (error) {
+                ref.setState({ view: "submission", data: payload })
             });
     }
 
@@ -43,25 +53,30 @@ export class Application extends React.PureComponent {
             selectedTopics: [],
             description: data.text[2],
             availablePlaces: this.mapArray(data.place),
-            selectedPlace: {}
+            selectedPlace: []
         }
     }
 
     render() {
-        const { data, loading } = this.state;
-        if (loading) {
-            return (
-                <div id="loading">
-                    <h1>DATA FETCHING NOW</h1>
-                </div>
-            )
+        const { data, view } = this.state;
+        switch(view){
+            default:
+            case "loading":
+                return (
+                    <div className="message">
+                        <h1>DATA FETCHING NOW</h1>
+                    </div>
+                )
+            case "form":
+                return <Form data={data} handleSubmission={(data) => this.handleSubmission(data)} />
+            case "submission":
+                return (
+                    <div className="message">
+                        <h1>SUBMISSION SUCCESSFUL</h1>
+                        <div onClick={() => this.setState({view: "form"})}><h3>Return To Form</h3></div>
+                    </div>
+                )
         }
-        else {
-            return (
-                <Form data={ data } />
-            )
-        }
-
     }
 }
 

@@ -10,7 +10,7 @@ export class TextBox extends React.PureComponent {
         const { name, value } = this.props;
         return (
             <div className="property-wrapper">
-                <textarea name={name} value={value} onChange={(e) => this.props.onUpdate(e)}></textarea>
+                <textarea name={ name } value={ value } onChange={ e => this.props.onUpdate(e) }></textarea>
             </div>
         )
     }

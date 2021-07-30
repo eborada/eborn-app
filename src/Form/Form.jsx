@@ -9,11 +9,11 @@ export class Form extends React.PureComponent {
         this.state = {
             view: "details",
             form: {
-                selectedTopics: [],
+                selectedTopics: props.data.selectedTopics,
                 author: props.data.author,
                 title: props.data.title,
                 description: props.data.description,
-                selectedPlace: []
+                selectedPlace: props.data.selectedPlace
             }
         }
     }
@@ -23,8 +23,9 @@ export class Form extends React.PureComponent {
     }
 
     handleSubmission(data) {
-        console.log("submission data", data)
-        return
+        data.availablePlaces = this.props.data.availablePlaces;
+        data.availableTopics = this.props.data.availableTopics;
+        this.props.handleSubmission(data);
     }
 
     render() {
